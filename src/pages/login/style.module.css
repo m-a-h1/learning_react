@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.inputField {
+  margin-bottom: 10px;
+}
+
+.inputField > input {
+  height: 40px;
+}
+
+.submitButton {
+  height: 30 px;
+}
