@@ -1,24 +1,39 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import styles from "./style.module.css";
 
+const defaultState = {
+  name: "",
+  password: "",
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case "update":
+      return { ...state, ...payload };
+    case "replace":
+      return payload;
+    default:
+      return payload;
+  }
+};
+
 const Login = () => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   const onUserChange = (e) => {
-    setUsername(e.target.value);
+    // setUsername(e.target.value);
   };
 
   const onPasswordChange = (e) => {
-    setPassword(e.target.value);
+    // setPassword(e.target.value);
+    // setUser({...user, password: e.target.value})
+    dispatch({ type: "update", payload: { password: e.target.value } });
   };
 
   const onSubmit = (e) => {
     console.log(">>>>> e ", e);
     e.preventDefault();
-
-    console.log(">>>>> username: ", username);
-    console.log(">>>>> password: ", password);
   };
 
   return (

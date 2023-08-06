@@ -17,6 +17,7 @@ const Layout = () => {
             <Link to="/comments">Comments</Link>
           </li>
         </ul>
+        <span>name: {}</span>
       </nav>
       <div className={styles.mainBody}>
         <Outlet />
