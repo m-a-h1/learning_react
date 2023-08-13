@@ -1,0 +1,30 @@
+
+.header{
+    background-color: rgb(50, 6, 90);
+    height: 30px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+.lists{
+    list-style-type: none;
+    
+}
+.lisy{
+    float: left;
+    
+   
+}
+.linked{
+    text-decoration: none;
+    color: aliceblue;
+    padding: 10px;
+    font-size: 20px;
+}
+.mainbody{
+    padding: 20px;
+    
+    background-color: rgb(206, 167, 243);
+    margin: 20px;
+    border-radius: 8px;
+}

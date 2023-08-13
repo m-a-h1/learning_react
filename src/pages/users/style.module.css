@@ -1,0 +1,18 @@
+.mainpage{
+    border: 2px solid rgb(42, 3, 79);
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: rgb(181, 118, 240);
+    position: relative;
+}
+.close{
+    color: red;
+    padding: 5px;
+    position: absolute;
+    right: 0px;
+    top : 0px;
+    cursor: pointer;
+    
+    
+}
