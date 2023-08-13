@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react";
 
 import Loading from "./loading";
-import getBlogsAction from "./api/apistore";
+import getBlogsAction from "../api/apistore";
 import style from "./styl.module.css"
 
 
