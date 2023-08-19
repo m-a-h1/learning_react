@@ -1,34 +1,58 @@
-import {  useReducer} from "react"
-const CreateUser = ({setUser , setisCreateMode}) =>{
-    const defaultstate={
-        id :""
-        ,
-        name:"" 
+
+import {  useEffect, useReducer} from "react"
+
+const defaultstate={
+    id :""
+    ,
+    name:"" 
+ }
+ const reducer =(state , action) =>{
+     const{type , payload}=action
+     switch(type){
+         case "update":
+             return {...state,...payload}
+         default :
+             return state
      }
-     const reducer =(state , action) =>{
-         const{type , payload}=action
-         switch(type){
-             case "update":
-                 return {...state,...payload}
-             default :
-                 return state
-         }
-     }
+ } 
+
+const CreateUser = ({setUser , setisCreateMode , selectedUser , setselectedUser }) =>{
+
      const [state , dispatch]=useReducer(reducer,defaultstate)
-    const onIdChange = (e) =>{
-        dispatch({type:"update",payload :{id : e.target.value}})
-    }
+   
     const onNameChange = (e) =>{
         dispatch({type:"update",payload :{name : e.target.value}})
     }
     const addUser = () =>{
         console.log(state);
         setUser((currentState)=>{
-            return [...currentState,state]
+            return [...currentState,{...state,id:currentState.length +1}]
 
         })
         setisCreateMode(false)
     }
+    const editUser = ()=>{
+        
+        setUser((currentUsers) => {
+            const newUsers =[...currentUsers]
+            newUsers[selectedUser.index].name= state.name
+            return newUsers
+
+        })
+        setselectedUser() 
+
+    }
+    const returnToList = () =>{
+        setisCreateMode(false)
+        setselectedUser()
+        
+       
+    }
+    useEffect(() => {
+        if ( selectedUser ){
+            dispatch({type:"update" , payload:{ name : selectedUser.name}})
+        }
+    } ,[selectedUser])
 
      
     return(
@@ -36,14 +60,13 @@ const CreateUser = ({setUser , setisCreateMode}) =>{
         <div>
             <h2>create</h2>
             <form>
-               <label> id
-                <input type="text" onChange={onIdChange}></input>
-                </label> 
+             
                 <label> username
-                <input type="text" onChange={onNameChange}></input>
+                <input type="text" onChange={onNameChange} value={state.name}></input>
                 </label> 
             </form>
-            <button type="submit" onClick={addUser } >add</button>
+            <button type="submit" onClick={selectedUser? editUser:addUser } >{selectedUser? "edit": "add"}</button>
+            <button type="submit"  onClick={ returnToList} >return</button>
         </div>
     )
 }

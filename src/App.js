@@ -11,6 +11,7 @@ import Todoes from "./pages/todoes/todoes"
 import Users from "./pages/users/users"
 import Albumes from "./pages/albumes/albumes"
 import Posts from "./pages/postes/posts"
+// import {Provider} from "react-redux"
 
 function App() {
 
