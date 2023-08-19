@@ -1,40 +1,39 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import LearningReact from "./LearnReact";
-import { useEffect, useState } from "react";
-import Login from "./pages/login/Login";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/home/Home";
-import Comments from "./pages/comments/Comments";
+// import LearningReact from "./LearnReact";
+import Login from "./pages/login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./comments/layout";
+import Home from "./pages/Home";
+import Blogs from "./pages/Blogs";
+import Photoes from "./pages/photoes/photoes"
+import Todoes from "./pages/todoes/todoes"
+import Users from "./pages/users/users"
+import Albumes from "./pages/albumes/albumes"
+import Posts from "./pages/postes/posts"
+// import {Provider} from "react-redux"
 
 function App() {
-  const [customerList, setCustomerList] = useState([]);
 
-  const callApi = () => {
-    return [1, 2, 3, 4, 5];
-  };
-
-  const getCustomer = () => {
-    const data = callApi();
-
-    setCustomerList(data);
-  };
-
-  console.log(">>>>> here in component ");
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="/comments" element={<Comments />} />
-          {/* <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NoPage />} /> */}
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/blogs" element={<Blogs/>}></Route>
+        <Route path="/users" element={<Users/>}></Route>
+        <Route path="/photoes" element={<Photoes/>}></Route>
+        <Route path="/albumes" element={<Albumes/>}></Route>
+        <Route path="/posts" element={<Posts/>}></Route>
+        <Route path="/todoes" element={<Todoes/>}></Route>
+        {/* <Route path="contact" element={<Contact />} />
+        <Route path="*" element={<NoPage />} /> */}
+      </Route>
+      
+    </Routes>
+  </BrowserRouter>
   );
 }
 

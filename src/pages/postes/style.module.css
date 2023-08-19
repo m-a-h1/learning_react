@@ -1,0 +1,36 @@
+.mainpage{
+    border: 2px solid rgb(42, 3, 79);
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    background-color: rgb(181, 118, 240);
+    position: relative;
+}
+.button{
+    padding: 10px;
+    margin: 10px;
+    margin-top: 20px;
+    border-radius: 25px;
+    background-color: rgb(42, 5, 76);
+    color: white;
+    cursor: pointer;
+    display: flex;
+}
+.close{
+    color: red;
+    padding: 5px;
+    position: absolute;
+    right: 0px;
+    top : 0px;
+    cursor: pointer;
+    
+    
+}
+.edit{
+    color: red;
+    padding: 5px;
+    position: absolute;
+    right: 25px;
+    top : 0px;
+    cursor: pointer;
+}
