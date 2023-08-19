@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react"
-import getPostsAction from "./api/apiaction"
 import style from "./style.module.css"
 import Loading from "../loading"
 import CreatePost from "./component/CreatePost"
+import { useDispatch, useSelector } from "react-redux"
+import { CLOSING } from "ws"
+import { getPostsAction } from "../../redux/reducer/post/postAction"
 
 const Posts = () =>{
-    const [post , setpost]= useState([])
+    const dispatch = useDispatch()
+
+    const currentPosts = useSelector((state) => state.postReducer.posts)
+    
+    const [post , setPost]= useState([])
     const [isCreateMode,setIsCreateMode] = useState(false)
     const [selectedPost , setSelectedPost] = useState()
    
     const [loading , setloading] = useState(false)
-    
-    
     
     
     const onCreateClick = () => {
@@ -20,7 +24,7 @@ const Posts = () =>{
     const onDelet = (i) => ()=>{
         const newposts =[...post]
         newposts.splice(i,1)
-        setpost(newposts)
+        setPost(newposts)
         
 
     }
@@ -31,16 +35,20 @@ const Posts = () =>{
     const GetPosts= async () =>
     {
         setloading(true)
-       const data = await getPostsAction()
-       setpost(data.slice(0,10))
+        dispatch(getPostsAction())
+    //    setpost(data.slice(0,10))
        setloading(false)
     }
     useEffect( () =>{
         GetPosts()
-
     },[])
+
+    useEffect(() => {
+        setPost(currentPosts)
+    }, [currentPosts])
+    
     if(loading) return <Loading/> 
-    if(isCreateMode || selectedPost) return <CreatePost setpost={setpost} setIsCreateMode={setIsCreateMode} selectedPost={selectedPost} setSelectedPost={setSelectedPost}/>
+    if(isCreateMode || selectedPost) return <CreatePost setpost={setPost} setIsCreateMode={setIsCreateMode} selectedPost={selectedPost} setSelectedPost={setSelectedPost}/>
     return (
         <div>
             <h2>posts</h2>
