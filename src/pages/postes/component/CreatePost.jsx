@@ -12,7 +12,7 @@ const defaultstate={
             return state
     }
 }
-const CreatePost = ({setpost , setisCreateMode ,selectedPost , setselectedPost})=>{
+const CreatePost = ({setpost , setisCreateMode ,selectedPost ,  setSelectedPost})=>{
    
        
         const [state , dispatch]=useReducer(reducer,defaultstate)
@@ -37,12 +37,12 @@ const CreatePost = ({setpost , setisCreateMode ,selectedPost , setselectedPost})
                 return newUsers
     
             })
-            setselectedPost() 
+            setSelectedPost() 
     
         }
         const returnToList = () =>{
             setisCreateMode(false)
-            setselectedPost()
+            setSelectedPost()
             
            
         }

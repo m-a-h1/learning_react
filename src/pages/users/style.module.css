@@ -13,8 +13,14 @@
     right: 0px;
     top : 0px;
     cursor: pointer;
-    
-    
+}
+.edit{
+    color: rgb(21, 21, 21);
+    padding: 5px;
+    position: absolute;
+    right: 25px;
+    top : 0px;
+    cursor: pointer;
 }
 .closes{
     color: red;
