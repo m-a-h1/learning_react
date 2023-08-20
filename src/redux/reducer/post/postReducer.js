@@ -5,7 +5,6 @@ const defaultState = {
 }
 
 const postReducer = (state=defaultState, action) => {
-    console.log('action: ', action)
     const {type, payload} = action;
 
     switch(type){

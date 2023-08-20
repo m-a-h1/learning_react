@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react"
 import Loading from "../loading"
-import getUserAction from "./api/apiaction"
 import style from "./style.module.css"
 import styles from "./button.module.css"
 import CreateUser from "./components/CreateUser"
+import { getUserAction } from "../../redux/reducer/user/userAction"
+import { useDispatch, useSelector } from "react-redux"
 
 const Users = () => {
+    const dispatch = useDispatch()
+    
     const [users , setUsers]= useState([])
     const [isCreateMode , setIsCreateMode] = useState(false)
     const [selectedUser , setSelectedUser]= useState ()
+
+    const currentUsers = useSelector(state => state.userReducer.users)
     
    
  
@@ -20,8 +25,7 @@ const Users = () => {
 
     const GetUser = async() =>{
         setloading(true)
-        const data =  await getUserAction()
-        setUsers(data.slice(0,10))
+        dispatch(getUserAction)
         setloading(false)
     }
     const onDelet = (i) => ()=>{
@@ -32,8 +36,9 @@ const Users = () => {
 
     const onEditClicked = (item , index)=>() =>{
         setSelectedUser({...item , index})
-
     }
+
+    useEffect(() => {setUsers(currentUsers)}, [currentUsers])
   
 
     useEffect(()=> {
