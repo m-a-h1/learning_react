@@ -1,3 +1,4 @@
+import { current } from "@reduxjs/toolkit"
 import {  useEffect, useReducer} from "react"
 const defaultstate={
     
@@ -32,9 +33,13 @@ const CreatePost = ({setpost , setIsCreateMode ,selectedPost ,  setSelectedPost}
         const editPost = ()=>{
         
             setpost((currentUsers) => {
+                console.log(currentUsers);
                 const newUsers =[...currentUsers]
-                newUsers[selectedPost.index].body= state.body
-                return newUsers
+                newUsers[selectedPost.index].body= "state"
+
+                console.log(newUsers);
+                // return newUsers
+                return currentUsers
     
             })
             setSelectedPost() 
@@ -57,7 +62,8 @@ const CreatePost = ({setpost , setIsCreateMode ,selectedPost ,  setSelectedPost}
             <form>
             
                 <label> body
-                <input type="text" onChange={onNameChange} value={state.body} ></input>
+                <textarea type="text" onChange={onNameChange} value={state.body} style={{width:"200px" , height:"100px"}} ></textarea>
+                
                 </label> 
             </form>
             <button type="submit"  onClick={ selectedPost?editPost : addPost }>{selectedPost? "edit" : "add"}</button>

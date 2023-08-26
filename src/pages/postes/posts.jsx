@@ -36,7 +36,7 @@ const Posts = () =>{
     {
         setloading(true)
         dispatch(getPostsAction())
-    //    setpost(data.slice(0,10))
+
        setloading(false)
     }
     useEffect( () =>{

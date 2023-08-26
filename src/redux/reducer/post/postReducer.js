@@ -1,18 +1,21 @@
 
 
-const defaultState = {
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
     posts: []
 }
 
-const postReducer = (state=defaultState, action) => {
-    const {type, payload} = action;
-
-    switch(type){
-        case 'setPosts':
-            return {...state, posts: payload} 
-        default: 
-            return state
+const slice = createSlice({
+    name: 'postReducer',
+    initialState,
+    reducers:{
+        SET_POSTS: (state, action) => {
+            state.posts = action.payload
+        }
     }
-}
+})
 
-export default postReducer
+export const {SET_POSTS} = slice.actions
+
+export default slice.reducer ;
