@@ -1,9 +1,11 @@
 import { current } from "@reduxjs/toolkit"
 import {  useEffect, useReducer} from "react"
+import _ from 'lodash'
+
 const defaultstate={
-    
     body:"" 
  }
+
  const reducer =(state , action) =>{
     const{type , payload}=action
     switch(type){
@@ -13,6 +15,7 @@ const defaultstate={
             return state
     }
 }
+
 const CreatePost = ({setpost , setIsCreateMode ,selectedPost ,  setSelectedPost})=>{
    
        
@@ -33,13 +36,10 @@ const CreatePost = ({setpost , setIsCreateMode ,selectedPost ,  setSelectedPost}
         const editPost = ()=>{
         
             setpost((currentUsers) => {
-                console.log(currentUsers);
-                const newUsers =[...currentUsers]
-                newUsers[selectedPost.index].body= "state"
+                const newUsers =_.cloneDeep(currentUsers)
+                newUsers[selectedPost.index].body= state.body
 
-                console.log(newUsers);
-                // return newUsers
-                return currentUsers
+                return newUsers
     
             })
             setSelectedPost() 
